@@ -1,5 +1,4 @@
-﻿using ExampleProject.DAL.Entities;
-using ExampleProject.DAL.Repository;
+﻿using ExampleProject.DAL.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ExampleProject.App.DI
@@ -9,7 +8,7 @@ namespace ExampleProject.App.DI
         private static void ConfigureRepositories(IServiceCollection serviceCollection)
         {
             serviceCollection
-                .AddSingleton<IRepository<ExampleEntity>, ExampleRepository>()
+                .AddSingleton<ExampleRepositoryAbstract, ExampleRepository>()
                 ;
         }
     }

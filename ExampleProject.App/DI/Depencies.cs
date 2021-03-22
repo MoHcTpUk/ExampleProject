@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using ExampleProject.DAL;
 using ExampleProject.DAL.EF;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

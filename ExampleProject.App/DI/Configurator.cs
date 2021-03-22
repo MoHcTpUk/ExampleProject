@@ -1,5 +1,4 @@
-﻿using ExampleProject.DAL.EF;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ExampleProject.App.DI

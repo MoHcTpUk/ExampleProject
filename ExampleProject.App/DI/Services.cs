@@ -1,6 +1,4 @@
-﻿using ExampleProject.BLL.DTO;
-using ExampleProject.BLL.Services;
-using ExampleProject.DAL.Entities;
+﻿using ExampleProject.BLL.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ExampleProject.App.DI
@@ -10,7 +8,7 @@ namespace ExampleProject.App.DI
         private static void ConfigureServices(IServiceCollection serviceCollection)
         {
             serviceCollection
-                .AddSingleton<BaseService<ExampleEntity, ExampleEntityDto>, ExampleService>()
+                .AddSingleton<ExampleServiceAbstract, ExampleService>()
                 ;
         }
     }
