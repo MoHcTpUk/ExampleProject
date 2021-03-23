@@ -1,6 +1,6 @@
-﻿using ExampleProject.App.DI;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Configurator = ExampleProject.BLL.DI.Configurator;
 
 namespace ExampleProject.WebAPI.Controllers
 {

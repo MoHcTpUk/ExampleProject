@@ -1,7 +1,7 @@
 ﻿using ExampleProject.BLL.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ExampleProject.App.DI
+namespace ExampleProject.BLL.DI
 {
     public static partial class Configurator
     {

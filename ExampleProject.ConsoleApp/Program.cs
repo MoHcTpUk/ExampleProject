@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using ExampleProject.App.Commands;
-using ExampleProject.App.DI;
 using MediatR;
+using Configurator = ExampleProject.BLL.DI.Configurator;
 
 namespace ExampleProject.ConsoleApp
 {

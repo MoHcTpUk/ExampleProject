@@ -1,7 +1,7 @@
 ﻿using ExampleProject.DAL.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ExampleProject.App.DI
+namespace ExampleProject.BLL.DI
 {
     public static partial class Configurator
     {

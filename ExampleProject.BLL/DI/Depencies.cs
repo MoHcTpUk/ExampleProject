@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
+using ExampleProject.App;
 using ExampleProject.DAL.EF;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ExampleProject.App.DI
+namespace ExampleProject.BLL.DI
 {
     public static partial class Configurator
     {
@@ -30,7 +31,6 @@ namespace ExampleProject.App.DI
                 {
                     opt.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=test");
                 });
-            ;
         }
     }
 }
