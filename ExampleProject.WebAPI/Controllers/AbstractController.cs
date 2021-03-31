@@ -1,7 +1,6 @@
-﻿using MediatR;
+﻿using ExampleProject.App;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
-using Configurator = ExampleProject.BLL.DI.Configurator;
 
 namespace ExampleProject.WebAPI.Controllers
 {
@@ -11,7 +10,7 @@ namespace ExampleProject.WebAPI.Controllers
 
         protected AbstractController()
         {
-            Cmd = App.MediatorConfig.Configure(Configurator.ServiceProvider.GetService<IMediator>());
+            Cmd = MediatorConfig.Mediator;
         }
     }
 }
