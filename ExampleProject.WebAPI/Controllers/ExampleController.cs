@@ -20,7 +20,7 @@ namespace ExampleProject.WebAPI.Controllers
         [HttpGet]
         public async Task<ExampleEntityDto> Get()
         {
-            var entity = await Mediator.Send(new ExsampleRequest());
+            var entity = await Cmd.Send(new ExsampleRequest());
 
             return entity;
         }

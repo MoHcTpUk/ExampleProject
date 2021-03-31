@@ -15,9 +15,9 @@ namespace ExampleProject.BLL.DI
     {
         public static IServiceCollection AddMediatorHandlers(this IServiceCollection services, List<Assembly> assemblys)
         {
-            try
+            foreach (var assembly in assemblys)
             {
-                foreach (var assembly in assemblys)
+                try
                 {
                     var classTypes = assembly.ExportedTypes.Select(t => t.GetTypeInfo())
                         .Where(t => t.IsClass && !t.IsAbstract);
@@ -32,10 +32,10 @@ namespace ExampleProject.BLL.DI
                         }
                     }
                 }
-            }
-            catch
-            {
-                // ignored
+                catch
+                {
+                    // ignored
+                }
             }
 
             return services;
