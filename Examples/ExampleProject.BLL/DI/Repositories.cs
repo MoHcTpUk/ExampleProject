@@ -1,7 +1,7 @@
-﻿using Core.DAL.Repository;
+﻿using ExampleProject.DAL.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Core.BLL.DI
+namespace ExampleProject.BLL.DI
 {
     public static partial class Configurator
     {

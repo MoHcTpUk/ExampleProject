@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ExampleProject.App.Commands;
+using ExampleProject.BLL.DTO;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
-using Core.App.Commands;
-using Core.BLL.DTO;
 
 namespace ExampleProject.WebAPI.Controllers
 {

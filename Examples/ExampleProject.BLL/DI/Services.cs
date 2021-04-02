@@ -1,7 +1,7 @@
-﻿using Core.BLL.Services;
+﻿using ExampleProject.BLL.Services;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Core.BLL.DI
+namespace ExampleProject.BLL.DI
 {
     public static partial class Configurator
     {

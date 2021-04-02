@@ -2,7 +2,7 @@
 
 namespace Core.DAL.Entities
 {
-    public abstract class BaseEntity : IEntity
+    public abstract class AbstractEntity : IEntity
     {
         [Required]
         [Key]

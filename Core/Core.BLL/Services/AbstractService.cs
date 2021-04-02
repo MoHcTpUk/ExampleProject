@@ -7,12 +7,12 @@ using Core.DAL.Repository;
 
 namespace Core.BLL.Services
 {
-    public abstract class BaseService<TEntity, TDTO> : IService<TEntity, TDTO> where TEntity : BaseEntity where TDTO : class
+    public abstract class AbstractService<TEntity, TDTO> : IService<TEntity, TDTO> where TEntity : AbstractEntity where TDTO : class
     {
         private readonly IMapper _mapper;
         private readonly IRepository<TEntity> _repository;
 
-        protected BaseService(IRepository<TEntity> repository, IMapper mapper)
+        protected AbstractService(IRepository<TEntity> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

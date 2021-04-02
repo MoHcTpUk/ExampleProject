@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Core.DAL.Repository;
+using ExampleProject.DAL.Repository;
 
-namespace Core.BLL.Services
+namespace ExampleProject.BLL.Services
 {
     public class ExampleService : ExampleServiceAbstract
     {

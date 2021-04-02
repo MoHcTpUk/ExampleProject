@@ -1,4 +1,4 @@
-﻿namespace Core.BLL.DTO
+﻿namespace ExampleProject.BLL.DTO
 {
     public record ExampleEntityDto
     {

@@ -1,10 +1,11 @@
-﻿using MediatR;
+﻿using ExampleProject.BLL.DI;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Core.App
+namespace ExampleProject.App
 {
     public static class MediatorConfig
     {
-        public static IMediator Mediator { get; } = BLL.DI.Configurator.ServiceProvider.GetService<IMediator>();
+        public static IMediator Mediator { get; } = Configurator.ServiceProvider.GetService<IMediator>();
     }
 }

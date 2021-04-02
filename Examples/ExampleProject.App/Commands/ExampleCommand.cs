@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Core.BLL.DTO;
-using Core.BLL.Services;
+using ExampleProject.BLL.DTO;
+using ExampleProject.BLL.Services;
 using MediatR;
 
-namespace Core.App.Commands
+namespace ExampleProject.App.Commands
 {
     public class ExsampleRequest : IRequest<ExampleEntityDto>
     {

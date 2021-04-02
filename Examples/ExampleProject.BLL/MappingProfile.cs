@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Core.BLL.DTO;
-using Core.DAL.Entities;
+using ExampleProject.BLL.DTO;
+using ExampleProject.DAL.Entities;
 
-namespace Core.BLL
+namespace ExampleProject.BLL
 {
     public class MappingProfile : Profile
     {

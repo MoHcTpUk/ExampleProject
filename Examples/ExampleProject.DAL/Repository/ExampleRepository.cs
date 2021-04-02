@@ -1,7 +1,8 @@
 ﻿using Core.DAL.EF;
 using Microsoft.EntityFrameworkCore;
+using ApplicationDbContext = ExampleProject.DAL.EF.ApplicationDbContext;
 
-namespace Core.DAL.Repository
+namespace ExampleProject.DAL.Repository
 {
     public class ExampleRepository: ExampleRepositoryAbstract
     {

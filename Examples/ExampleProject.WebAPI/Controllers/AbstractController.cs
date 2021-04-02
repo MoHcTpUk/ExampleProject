@@ -1,4 +1,4 @@
-﻿using Core.App;
+﻿using ExampleProject.App;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

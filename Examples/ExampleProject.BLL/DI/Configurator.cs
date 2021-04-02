@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Core.BLL.DI
+namespace ExampleProject.BLL.DI
 {
     public static partial class Configurator
     {

@@ -4,8 +4,9 @@ using Core.DAL.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using ApplicationDbContext = ExampleProject.DAL.EF.ApplicationDbContext;
 
-namespace Core.DAL.Migrations
+namespace ExampleProject.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot

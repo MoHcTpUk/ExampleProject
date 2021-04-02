@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.DAL.Repository
 {
-    public abstract class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
+    public abstract class AbstractRepository<TEntity> : IRepository<TEntity> where TEntity : AbstractEntity
     {
-        private readonly ApplicationDbContext _context;
+        private readonly AbstractApplicationDbContext _context;
 
-        protected BaseRepository(IDbContextFactory<ApplicationDbContext> context)
+        protected AbstractRepository(IDbContextFactory<AbstractApplicationDbContext> context)
         {
             _context = context.CreateDbContext();
         }

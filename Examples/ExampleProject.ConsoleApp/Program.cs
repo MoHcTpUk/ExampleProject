@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using System;
 using System.Threading.Tasks;
-using Core.App;
-using Core.App.Commands;
+using ExampleProject.App;
+using ExampleProject.App.Commands;
 
 namespace ExampleProject.ConsoleApp
 {

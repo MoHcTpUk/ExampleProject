@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using AutoMapper;
-using Core.DAL.EF;
+using ExampleProject.DAL.EF;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Core.BLL.DI
+namespace ExampleProject.BLL.DI
 {
     public static class MediatorExtensions
     {
@@ -50,15 +52,40 @@ namespace Core.BLL.DI
 
             serviceCollection
                 .AddMediatR(typeof(Configurator))
-                .AddMediatorHandlers(AppDomain.CurrentDomain.GetAssemblies().ToList())
+                .AddMediatorHandlers(AppDomain.CurrentDomain.GetAssemblies().Where(_=>_.FullName.Contains("ExampleProject")).ToList())
                 .AddSingleton(mapper)
                 .AddDbContextFactory<ApplicationDbContext, ExsampleContextFactory>(opt =>
                 {
-                    opt.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=test");
+                    opt.UseNpgsql(GetDbConnectionString());
                     //        //options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test");
                     //        options.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=test");
                     //        //options.UseInMemoryDatabase(@"ExsampleDataBase");
                 });
+        }
+
+        public static string GetDbConnectionString()
+        {
+            string path = Directory.GetCurrentDirectory() + @"\appsettings.json";
+
+            try
+            {
+                if (File.Exists(path))
+                {
+                    var builder = new ConfigurationBuilder();
+                    builder.SetBasePath(Directory.GetCurrentDirectory());
+
+                    var config = builder.AddJsonFile("appsettings.json").Build();
+
+                    string readedConnectionString = config.GetConnectionString("LocalConnection");
+                    return string.IsNullOrWhiteSpace(readedConnectionString) ? "" : readedConnectionString;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while reading appsettings.json:" + ex.Message);
+            }
+
+            return "";
         }
     }
 }

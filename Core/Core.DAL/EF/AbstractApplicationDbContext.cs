@@ -2,9 +2,9 @@
 
 namespace Core.DAL.EF
 {
-    public sealed partial class ApplicationDbContext : DbContext
+    public abstract class AbstractApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        protected AbstractApplicationDbContext(DbContextOptions<AbstractApplicationDbContext> options) : base(options)
         {
             //Database.EnsureDeleted();   // удаляем бд со старой схемой
             //Database.EnsureCreated();   // создаем бд с новой схемой

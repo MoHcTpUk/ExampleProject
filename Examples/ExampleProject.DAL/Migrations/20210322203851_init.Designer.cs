@@ -5,8 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using ApplicationDbContext = ExampleProject.DAL.EF.ApplicationDbContext;
 
-namespace Core.DAL.Migrations
+namespace ExampleProject.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20210322203851_init")]
