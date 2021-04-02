@@ -1,4 +1,5 @@
-﻿using ExampleProject.BLL.DI;
+﻿using Core.BLL.DI;
+using ExampleProject.BLL.DI;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 

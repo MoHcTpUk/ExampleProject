@@ -1,11 +1,12 @@
-﻿using ExampleProject.BLL.Services;
+﻿using Core.BLL.DI;
+using ExampleProject.BLL.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ExampleProject.BLL.DI
 {
-    public static partial class Configurator
+    public class ServicesConfigurator : IServicesConfigurator
     {
-        private static void ConfigureServices(IServiceCollection serviceCollection)
+        public void ConfigureServices(IServiceCollection serviceCollection)
         {
             serviceCollection
                 .AddSingleton<ExampleServiceAbstract, ExampleService>()

@@ -1,66 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using AutoMapper;
-using ExampleProject.DAL.EF;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ExampleProject.BLL.DI
+namespace Core.BLL.DI
 {
-    public static class MediatorExtensions
+    public static class Configurator
     {
-        public static IServiceCollection AddMediatorHandlers(this IServiceCollection services, List<Assembly> assemblys)
+        public static ServiceProvider ServiceProvider { get; }
+        private static ServiceCollection ServiceCollection { get; }
+
+        static Configurator()
         {
-            foreach (var assembly in assemblys)
-            {
-                try
-                {
-                    var classTypes = assembly.ExportedTypes.Select(t => t.GetTypeInfo())
-                        .Where(t => t.IsClass && !t.IsAbstract);
+            ServiceCollection = new ServiceCollection();
 
-                    foreach (var type in classTypes)
-                    {
-                        var interfaces = type.ImplementedInterfaces.Select(i => i.GetTypeInfo());
+            ConfigureDepencies(ServiceCollection);
 
-                        foreach (var handlerType in interfaces.Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IRequestHandler<,>)))
-                        {
-                            services.AddTransient(handlerType.AsType(), type.AsType());
-                        }
-                    }
-                }
-                catch
-                {
-                    // ignored
-                }
-            }
+            ServiceProvider = ServiceCollection.BuildServiceProvider();
 
-            return services;
+            //InitDb(ServiceProvider.GetService<ApplicationDbContext>());
         }
-    }
 
-    public static partial class Configurator
-    {
         private static void ConfigureDepencies(IServiceCollection serviceCollection)
         {
             var mapperConfig = new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); });
             var mapper = mapperConfig.CreateMapper();
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(_ => _.FullName.Contains("ExampleProject")).ToList();
 
             serviceCollection
-                .AddMediatR(typeof(Configurator))
-                .AddMediatorHandlers(AppDomain.CurrentDomain.GetAssemblies().Where(_=>_.FullName.Contains("ExampleProject")).ToList())
-                .AddSingleton(mapper)
+                .AddRepositories(assemblies)
+                .AddServices(assemblies)
+                .AddMediatorHandlers(assemblies)
                 .AddDbContextFactory<ApplicationDbContext, ExsampleContextFactory>(opt =>
                 {
                     opt.UseNpgsql(GetDbConnectionString());
                     //        //options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test");
                     //        options.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=test");
                     //        //options.UseInMemoryDatabase(@"ExsampleDataBase");
-                });
+                })
+                .AddMediatR(typeof(Configurator))
+
+                .AddSingleton(mapper);
+
         }
 
         public static string GetDbConnectionString()

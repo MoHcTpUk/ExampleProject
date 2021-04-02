@@ -1,11 +1,12 @@
-﻿using ExampleProject.DAL.Repository;
+﻿using Core.BLL.DI;
+using ExampleProject.DAL.Repository;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ExampleProject.BLL.DI
 {
-    public static partial class Configurator
+    public class RepositoriesConfigurator : IRepositoriesConfigurator
     {
-        private static void ConfigureRepositories(IServiceCollection serviceCollection)
+        public void ConfigureRepositories(IServiceCollection serviceCollection)
         {
             serviceCollection
                 .AddSingleton<ExampleRepositoryAbstract, ExampleRepository>()
