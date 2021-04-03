@@ -1,8 +1,9 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Core.BLL.Services;
 using ExampleProject.BLL.DTO;
-using ExampleProject.BLL.Services;
+using ExampleProject.DAL.Entities;
 using MediatR;
 
 namespace ExampleProject.App.Commands
@@ -14,9 +15,9 @@ namespace ExampleProject.App.Commands
 
     public class ExsampleRequestHandler : IRequestHandler<ExsampleRequest, ExampleEntityDto>
     {
-        private readonly ExampleService _exsampleService;
+        private readonly IService<ExampleEntity, ExampleEntityDto> _exsampleService;
 
-        public ExsampleRequestHandler(ExampleService exsampleService)
+        public ExsampleRequestHandler(IService<ExampleEntity, ExampleEntityDto> exsampleService)
         {
             _exsampleService = exsampleService;
         }

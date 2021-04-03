@@ -1,11 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using AutoMapper;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Linq;
 
 namespace Core.BLL.DI
 {
@@ -36,11 +32,12 @@ namespace Core.BLL.DI
             serviceCollection
                 .AddRepositories(assemblies)
                 .AddServices(assemblies)
+                .AddDbContextFactories(assemblies)
                 //.AddMediatorHandlers(assemblies)
-                .AddDbContextFactories(assemblies, opt =>
-                {
-                    opt.UseNpgsql(GetDbConnectionString());
-                })
+                //.AddDbContextFactories(assemblies, opt =>
+                //{
+                //    opt.UseNpgsql(GetDbConnectionString());
+                //})
                 //.AddDbContextFactory<ApplicationDbContext, ExsampleContextFactory>(opt =>
                 //{
                 //    opt.UseNpgsql(GetDbConnectionString());
@@ -52,31 +49,6 @@ namespace Core.BLL.DI
                 ;
             //.AddSingleton(mapper);
 
-        }
-
-        public static string GetDbConnectionString()
-        {
-            string path = Directory.GetCurrentDirectory() + @"\appsettings.json";
-
-            try
-            {
-                if (File.Exists(path))
-                {
-                    var builder = new ConfigurationBuilder();
-                    builder.SetBasePath(Directory.GetCurrentDirectory());
-
-                    var config = builder.AddJsonFile("appsettings.json").Build();
-
-                    string readedConnectionString = config.GetConnectionString("LocalConnection");
-                    return string.IsNullOrWhiteSpace(readedConnectionString) ? "" : readedConnectionString;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error while reading appsettings.json:" + ex.Message);
-            }
-
-            return "";
         }
     }
 }

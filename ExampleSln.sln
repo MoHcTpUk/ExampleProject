@@ -21,8 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleProject.BLL", "Examp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleProject.DAL", "Examples\ExampleProject.DAL\ExampleProject.DAL.csproj", "{C83CB15C-6082-43B1-B441-6F72DFC6498A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleProject.DAL.Interfaces", "Examples\ExampleProject.DAL.Interfaces\ExampleProject.DAL.Interfaces.csproj", "{5FBBDFA5-16AE-409F-B1B4-BEAB0A4F07C4}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,10 +55,6 @@ Global
 		{C83CB15C-6082-43B1-B441-6F72DFC6498A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C83CB15C-6082-43B1-B441-6F72DFC6498A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C83CB15C-6082-43B1-B441-6F72DFC6498A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5FBBDFA5-16AE-409F-B1B4-BEAB0A4F07C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5FBBDFA5-16AE-409F-B1B4-BEAB0A4F07C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5FBBDFA5-16AE-409F-B1B4-BEAB0A4F07C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5FBBDFA5-16AE-409F-B1B4-BEAB0A4F07C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,7 +67,6 @@ Global
 		{D988EFDB-868F-47F4-8598-19F095F82E8C} = {BF6D0A14-6A95-4ED5-AA7A-F4744F00F2DB}
 		{8423C114-D422-4FC6-9DCE-D4214EFD4BDD} = {BF6D0A14-6A95-4ED5-AA7A-F4744F00F2DB}
 		{C83CB15C-6082-43B1-B441-6F72DFC6498A} = {BF6D0A14-6A95-4ED5-AA7A-F4744F00F2DB}
-		{5FBBDFA5-16AE-409F-B1B4-BEAB0A4F07C4} = {BF6D0A14-6A95-4ED5-AA7A-F4744F00F2DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B8E71257-889E-4CCE-BCE0-A046A5B55C37}
