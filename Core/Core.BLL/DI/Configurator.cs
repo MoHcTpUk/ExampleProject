@@ -29,12 +29,18 @@ namespace Core.BLL.DI
         {
             //var mapperConfig = new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); });
             //var mapper = mapperConfig.CreateMapper();
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(_ => _.FullName.Contains("ExampleProject")).ToList();
+            //var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(_ => _.FullName.Contains("ExampleProject")).ToList();
+
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(_ => !_.IsDynamic).ToList();
 
             serviceCollection
                 .AddRepositories(assemblies)
                 .AddServices(assemblies)
-                .AddMediatorHandlers(assemblies)
+                //.AddMediatorHandlers(assemblies)
+                .AddDbContextFactories(assemblies, opt =>
+                {
+                    opt.UseNpgsql(GetDbConnectionString());
+                })
                 //.AddDbContextFactory<ApplicationDbContext, ExsampleContextFactory>(opt =>
                 //{
                 //    opt.UseNpgsql(GetDbConnectionString());
@@ -42,7 +48,8 @@ namespace Core.BLL.DI
                 //    //        options.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=test");
                 //    //        //options.UseInMemoryDatabase(@"ExsampleDataBase");
                 //})
-                .AddMediatR(typeof(Configurator));
+                .AddMediatR(assemblies.ToArray())
+                ;
             //.AddSingleton(mapper);
 
         }

@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ExampleProject.DAL.Interfaces\ExampleProject.DAL.Interfaces.csproj" />
+    <ProjectReference Include="..\..\Core\Core.DAL\Core.DAL.csproj" />
   </ItemGroup>
 
 </Project>

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Reflection;
 using Core.BLL.Services;
 using Core.DAL.Repository;
+using ExampleProject.DAL.EF;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Core.BLL.DI
@@ -37,7 +39,8 @@ namespace Core.BLL.DI
 
             foreach (var handlerType in typeList)
             {
-                services.AddSingleton(handlerType.Definition, handlerType.Implementation);
+                //services.AddSingleton(handlerType.Definition, handlerType.Implementation);
+                services.AddTransient(handlerType.Implementation);
                 //services.AddSingleton<ExampleServiceAbstract, ExampleService>();
             }
 
@@ -51,8 +54,21 @@ namespace Core.BLL.DI
 
             foreach (var handlerType in typeList)
             {
-                services.AddSingleton(handlerType.Definition, handlerType.Implementation);
+                services.AddSingleton(handlerType.Implementation);
                 //services.AddSingleton<ExampleRepositoryAbstract, ExampleRepository>();
+            }
+
+            return services;
+        }
+
+        public static IServiceCollection AddDbContextFactories(this IServiceCollection services, List<Assembly> assemblys, Action<DbContextOptionsBuilder> optionsAction)
+        {
+            var interfaceType = typeof(IDbContextFactory<>);
+            var typeList = GetTypeList(assemblys, interfaceType);
+
+            foreach (var handlerType in typeList)
+            {
+                services.AddDbContextFactory<ApplicationDbContext, ExsampleContextFactory>(optionsAction);
             }
 
             return services;
