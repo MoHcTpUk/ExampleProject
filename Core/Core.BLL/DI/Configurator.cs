@@ -27,24 +27,23 @@ namespace Core.BLL.DI
 
         private static void ConfigureDepencies(IServiceCollection serviceCollection)
         {
-            var mapperConfig = new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); });
-            var mapper = mapperConfig.CreateMapper();
+            //var mapperConfig = new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); });
+            //var mapper = mapperConfig.CreateMapper();
             var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(_ => _.FullName.Contains("ExampleProject")).ToList();
 
             serviceCollection
                 .AddRepositories(assemblies)
                 .AddServices(assemblies)
                 .AddMediatorHandlers(assemblies)
-                .AddDbContextFactory<ApplicationDbContext, ExsampleContextFactory>(opt =>
-                {
-                    opt.UseNpgsql(GetDbConnectionString());
-                    //        //options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test");
-                    //        options.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=test");
-                    //        //options.UseInMemoryDatabase(@"ExsampleDataBase");
-                })
-                .AddMediatR(typeof(Configurator))
-
-                .AddSingleton(mapper);
+                //.AddDbContextFactory<ApplicationDbContext, ExsampleContextFactory>(opt =>
+                //{
+                //    opt.UseNpgsql(GetDbConnectionString());
+                //    //        //options.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test");
+                //    //        options.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=test");
+                //    //        //options.UseInMemoryDatabase(@"ExsampleDataBase");
+                //})
+                .AddMediatR(typeof(Configurator));
+            //.AddSingleton(mapper);
 
         }
 

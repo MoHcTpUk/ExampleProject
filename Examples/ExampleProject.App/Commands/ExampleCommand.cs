@@ -14,9 +14,9 @@ namespace ExampleProject.App.Commands
 
     public class ExsampleRequestHandler : IRequestHandler<ExsampleRequest, ExampleEntityDto>
     {
-        private readonly ExampleServiceAbstract _exsampleService;
+        private readonly ExampleService _exsampleService;
 
-        public ExsampleRequestHandler(ExampleServiceAbstract exsampleService)
+        public ExsampleRequestHandler(ExampleService exsampleService)
         {
             _exsampleService = exsampleService;
         }
