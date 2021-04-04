@@ -1,5 +1,4 @@
 ﻿using Core.DAL.Configuration;
-using Core.DAL.EF;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ExampleProject.DAL.EF
@@ -10,8 +9,5 @@ namespace ExampleProject.DAL.EF
         {
             serviceCollection.AddDbContextFactory<ApplicationDbContext, ExsampleContextFactory>();
         }
-
-
-
     }
 }
