@@ -1,12 +1,11 @@
-﻿using Core.DAL.EF;
-using ExampleProject.DAL.Entities;
+﻿using ExampleProject.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ExampleProject.DAL.EF
 {
-    public sealed class ApplicationDbContext: AbstractApplicationDbContext
+    public sealed class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<AbstractApplicationDbContext> options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
 
         public DbSet<ExampleEntity> Bases { get; set; } = null;

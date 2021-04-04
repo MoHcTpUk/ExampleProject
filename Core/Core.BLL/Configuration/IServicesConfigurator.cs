@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Core.BLL.Services
+namespace Core.BLL.Configuration
 {
     public interface IServicesConfigurator
     {

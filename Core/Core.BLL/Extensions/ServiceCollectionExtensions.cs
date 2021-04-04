@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Core.BLL.Services;
+using Core.BLL.Configuration;
 using Core.DAL.EF;
 using Core.DAL.Repository;
 using Microsoft.Extensions.DependencyInjection;

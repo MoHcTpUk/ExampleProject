@@ -1,9 +1,11 @@
-﻿using MediatR;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Linq;
+using AutoMapper;
+using Core.BLL.DI;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Core.BLL.DI
+namespace Core.BLL.Configuration
 {
     public static class Configurator
     {
@@ -23,8 +25,8 @@ namespace Core.BLL.DI
 
         private static void ConfigureDepencies(IServiceCollection serviceCollection)
         {
-            //var mapperConfig = new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); });
-            //var mapper = mapperConfig.CreateMapper();
+            var mapperConfig = new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); });
+            var mapper = mapperConfig.CreateMapper();
             //var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(_ => _.FullName.Contains("ExampleProject")).ToList();
 
             var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(_ => !_.IsDynamic).ToList();
@@ -46,9 +48,13 @@ namespace Core.BLL.DI
                 //    //        //options.UseInMemoryDatabase(@"ExsampleDataBase");
                 //})
                 .AddMediatR(assemblies.ToArray())
+                .AddSingleton(mapper)
                 ;
-            //.AddSingleton(mapper);
 
         }
+    }
+
+    internal class MappingProfile : Profile
+    {
     }
 }

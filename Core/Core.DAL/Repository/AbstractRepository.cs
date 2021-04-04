@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Core.DAL.EF;
 using Core.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,9 +9,9 @@ namespace Core.DAL.Repository
 {
     public abstract class AbstractRepository<TEntity> : IRepository<TEntity> where TEntity : AbstractEntity
     {
-        private readonly AbstractApplicationDbContext _context;
+        private readonly DbContext _context;
 
-        protected AbstractRepository(IDbContextFactory<AbstractApplicationDbContext> context)
+        protected AbstractRepository(IDbContextFactory<DbContext> context)
         {
             _context = context.CreateDbContext();
         }

@@ -6,12 +6,7 @@ namespace Core.DAL.EF
 {
     public abstract class AbstractContextFactory<TContext> : IDesignTimeDbContextFactory<TContext>, IDbContextFactory<TContext> where TContext : DbContext
     {
-        private DbContextOptionsBuilder<TContext> OptionsBuilder { get; }
-
-        protected AbstractContextFactory(DbContextOptionsBuilder<TContext> optionsBuilder)
-        {
-            OptionsBuilder = optionsBuilder;
-        }
+        protected DbContextOptionsBuilder<TContext> OptionsBuilder { get; set; }
 
         public TContext CreateDbContext(string[] args)
         {
@@ -22,5 +17,7 @@ namespace Core.DAL.EF
         {
             return (TContext)Activator.CreateInstance(typeof(TContext), OptionsBuilder.Options);
         }
+
+        public abstract string GetDbConnectionString();
     }
 }

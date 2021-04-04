@@ -1,4 +1,4 @@
-﻿using Core.BLL.DI;
+﻿using Core.BLL.Configuration;
 using ExampleProject.DAL;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;

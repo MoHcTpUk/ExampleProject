@@ -1,4 +1,5 @@
-﻿using Core.BLL.Services;
+﻿using Core.BLL.Configuration;
+using Core.BLL.Services;
 using ExampleProject.BLL.DTO;
 using ExampleProject.DAL.Entities;
 using Microsoft.Extensions.DependencyInjection;
