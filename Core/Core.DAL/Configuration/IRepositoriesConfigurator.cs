@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Core.DAL.Repository
+namespace Core.DAL.Configuration
 {
     public interface IRepositoriesConfigurator
     {

@@ -1,4 +1,5 @@
-﻿using Core.DAL.Repository;
+﻿using Core.DAL.Configuration;
+using Core.DAL.Repository;
 using ExampleProject.DAL.Entities;
 using Microsoft.Extensions.DependencyInjection;
 

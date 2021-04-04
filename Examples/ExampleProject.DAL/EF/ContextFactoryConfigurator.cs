@@ -1,4 +1,5 @@
-﻿using Core.DAL.EF;
+﻿using Core.DAL.Configuration;
+using Core.DAL.EF;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ExampleProject.DAL.EF

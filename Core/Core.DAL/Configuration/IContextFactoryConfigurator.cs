@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Core.DAL.EF
+namespace Core.DAL.Configuration
 {
     public interface IContextFactoryConfigurator
     {

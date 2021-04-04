@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using AutoMapper;
 using Core.BLL.Configuration;
-using Core.DAL.EF;
-using Core.DAL.Repository;
+using Core.DAL.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Core.BLL.DI
+namespace Core.BLL.Extensions
 {
     public class TypeImplementation
     {
@@ -26,6 +26,26 @@ namespace Core.BLL.DI
             //{
             //    services.AddTransient(handlerType.Definition,handlerType.Implementation);
             //}
+
+            return services;
+        }
+
+        public static IServiceCollection AddAutoMapperConfigs(this IServiceCollection services, List<Assembly> assemblys)
+        {
+            var baseClassType = typeof(Profile);
+            var typeList = GetAllClassInheritance(assemblys, baseClassType);
+
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                foreach (var handlerType in typeList)
+                {
+                    mc.AddProfile((Profile)Activator.CreateInstance(handlerType.Implementation));
+                }
+            });
+
+
+            var mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             return services;
         }
@@ -144,6 +164,12 @@ namespace Core.BLL.DI
         //    return typeList;
         //}
 
+        /// <summary>
+        /// Получить все классы реализующие интерфейс
+        /// </summary>
+        /// <param name="assemblys">Сборки для поиска</param>
+        /// <param name="interfaceType">Интерфейс</param>
+        /// <returns></returns>
         private static List<TypeImplementation> GetAllInterfaceImplementations(List<Assembly> assemblys, Type interfaceType)
         {
             var typeList = new List<TypeImplementation>();
@@ -167,6 +193,41 @@ namespace Core.BLL.DI
                                 Implementation = type
                             });
                         }
+                    }
+                }
+                catch
+                {
+                    // ignored
+                }
+            }
+
+            return typeList;
+        }
+
+        /// <summary>
+        /// Получить всех наследников класса
+        /// </summary>
+        /// <param name="assemblys">Сборки для поиска</param>
+        /// <param name="classType">Тип класса</param>
+        /// <returns></returns>
+        private static List<TypeImplementation> GetAllClassInheritance(List<Assembly> assemblys, Type classType)
+        {
+            var typeList = new List<TypeImplementation>();
+
+            foreach (var assembly in assemblys)
+            {
+                try
+                {
+                    var classTypes = assembly.ExportedTypes.Select(t => t.GetTypeInfo())
+                        .Where(t => t.IsClass && !t.IsAbstract && t.BaseType == classType);
+
+                    foreach (var type in classTypes)
+                    {
+                        typeList.Add(new TypeImplementation
+                            {
+                                Definition = classType.GetTypeInfo(),
+                                Implementation = type
+                            });
                     }
                 }
                 catch
