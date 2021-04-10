@@ -8,6 +8,9 @@ namespace ExampleProject.DAL.EF
 {
     public class ExsampleContextFactory : AbstractContextFactory<ApplicationDbContext>
     {
+        private const string AppSettingsFile = "appsettings.json";
+        private const string ConnectionStringName = "LocalConnection";
+
         public ExsampleContextFactory()
         {
             OptionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
@@ -16,7 +19,7 @@ namespace ExampleProject.DAL.EF
 
         public sealed override string GetDbConnectionString()
         {
-            string path = Directory.GetCurrentDirectory() + @"\appsettings.json";
+            string path = Path.Combine(Directory.GetCurrentDirectory(), AppSettingsFile);
 
             try
             {
@@ -25,18 +28,18 @@ namespace ExampleProject.DAL.EF
                     var builder = new ConfigurationBuilder();
                     builder.SetBasePath(Directory.GetCurrentDirectory());
 
-                    var config = builder.AddJsonFile("appsettings.json").Build();
+                    var config = builder.AddJsonFile(AppSettingsFile).Build();
 
-                    string readedConnectionString = config.GetConnectionString("LocalConnection");
+                    string readedConnectionString = config.GetConnectionString(ConnectionStringName);
                     return string.IsNullOrWhiteSpace(readedConnectionString) ? "" : readedConnectionString;
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error while reading appsettings.json:" + ex.Message);
+                throw new Exception(@$"Error while reading appsettings.json: {ex.Message}");
             }
 
-            return "";
+            throw new Exception(@$"Error while reading appsettings.json: File {path} not found");
         }
     }
 }
