@@ -6,10 +6,15 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["ExampleProject.WebAPI/ExampleProject.WebAPI.csproj", "ExampleProject.WebAPI/"]
-RUN dotnet restore "ExampleProject.WebAPI/ExampleProject.WebAPI.csproj"
+COPY ["Examples/ExampleProject.WebAPI/ExampleProject.WebAPI.csproj", "Examples/ExampleProject.WebAPI/"]
+COPY ["Examples/ExampleProject.App/ExampleProject.App.csproj", "Examples/ExampleProject.App/"]
+COPY ["Examples/ExampleProject.BLL/ExampleProject.BLL.csproj", "Examples/ExampleProject.BLL/"]
+COPY ["Examples/ExampleProject.DAL/ExampleProject.DAL.csproj", "Examples/ExampleProject.DAL/"]
+COPY ["Core/Core.DAL/Core.DAL.csproj", "Core/Core.DAL/"]
+COPY ["Core/Core.BLL/Core.BLL.csproj", "Core/Core.BLL/"]
+RUN dotnet restore "Examples/ExampleProject.WebAPI/ExampleProject.WebAPI.csproj"
 COPY . .
-WORKDIR "/src/ExampleProject.WebAPI"
+WORKDIR "/src/Examples/ExampleProject.WebAPI"
 RUN dotnet build "ExampleProject.WebAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
