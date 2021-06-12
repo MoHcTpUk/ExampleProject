@@ -17,7 +17,7 @@ namespace ExampleProject.Identity
 {
     public class IdentityConfigrator : IIdentityConfigurator
     {
-        private string _configFile => "jwt.json";
+        private string _configFile => "config.json";
 
         public void ConfigureIdentity(IServiceCollection serviceCollection)
         {

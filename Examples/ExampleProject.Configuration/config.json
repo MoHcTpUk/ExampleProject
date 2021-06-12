@@ -8,6 +8,12 @@
   },
   "AllowedHosts": "*",
   "ConnectionStrings": {
-    "LocalConnection": "Host=host.docker.internal;Port=;Database=;Username=;Password="
+    "LocalConnection": "Host=;Port=;Database=;Username=;Password="
+  },
+  "JWTSettings": {
+    "Key": "",
+    "Issuer": "",
+    "Audience": "",
+    "DurationInMinutes": 130
   }
 }

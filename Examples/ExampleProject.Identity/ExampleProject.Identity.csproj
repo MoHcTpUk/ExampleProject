@@ -16,10 +16,4 @@
     <ProjectReference Include="..\..\Core\Core.DAL\Core.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="jwt.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

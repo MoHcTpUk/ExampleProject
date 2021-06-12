@@ -1,8 +1,0 @@
-﻿{
-  "JWTSettings": {
-    "Key": "",
-    "Issuer": "",
-    "Audience": "",
-    "DurationInMinutes": 130
-  }
-}
