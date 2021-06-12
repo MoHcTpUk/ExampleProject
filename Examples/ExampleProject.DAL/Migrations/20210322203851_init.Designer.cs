@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using ApplicationDbContext = ExampleProject.DAL.EF.ApplicationDbContext;
+using ExampleDbContext = ExampleProject.DAL.EF.ExampleDbContext;
 
 namespace ExampleProject.DAL.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(ExampleDbContext))]
     [Migration("20210322203851_init")]
     partial class init
     {

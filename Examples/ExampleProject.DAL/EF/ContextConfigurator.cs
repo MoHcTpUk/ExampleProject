@@ -3,11 +3,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ExampleProject.DAL.EF
 {
-    public class ContextFactoryConfigurator : IContextFactoryConfigurator
+    public class ContextConfigurator : IContextFactoryConfigurator
     {
         public void ConfigureContextFactory(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddDbContextFactory<ApplicationDbContext, ExsampleContextFactory>();
+            serviceCollection.AddDbContextFactory<ExampleDbContext, ExsampleContextFactory>();
         }
     }
 }

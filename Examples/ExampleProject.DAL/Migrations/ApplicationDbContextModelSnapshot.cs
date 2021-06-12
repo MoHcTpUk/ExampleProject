@@ -3,11 +3,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using ApplicationDbContext = ExampleProject.DAL.EF.ApplicationDbContext;
+using ExampleDbContext = ExampleProject.DAL.EF.ExampleDbContext;
 
 namespace ExampleProject.DAL.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(ExampleDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

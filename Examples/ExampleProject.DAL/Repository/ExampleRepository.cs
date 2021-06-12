@@ -7,7 +7,7 @@ namespace ExampleProject.DAL.Repository
 {
     public class ExampleRepository : AbstractRepository<ExampleEntity>
     {
-        public ExampleRepository(IDbContextFactory<ApplicationDbContext> context) : base(context)
+        public ExampleRepository(IDbContextFactory<ExampleDbContext> context) : base(context)
         { }
     }
 }

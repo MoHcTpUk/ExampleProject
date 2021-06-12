@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExampleProject.DAL.EF
 {
-    public sealed class ApplicationDbContext : DbContext
+    public sealed class ExampleDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public ExampleDbContext(DbContextOptions<ExampleDbContext> options) : base(options)
         { }
 
         public DbSet<ExampleEntity> Bases { get; set; } = null;

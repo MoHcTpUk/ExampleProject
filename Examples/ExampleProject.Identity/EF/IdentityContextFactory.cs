@@ -4,16 +4,16 @@ using Core.DAL.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace ExampleProject.DAL.EF
+namespace ExampleProject.Identity.EF
 {
-    public class ExsampleContextFactory : AbstractContextFactory<ExampleDbContext>
+    public class IdentityContextFactory : AbstractContextFactory<IdentityDbContext>
     {
         private const string AppSettingsFile = "config.json";
         private const string ConnectionStringName = "LocalConnection";
 
-        public ExsampleContextFactory()
+        public IdentityContextFactory()
         {
-            OptionsBuilder = new DbContextOptionsBuilder<ExampleDbContext>();
+            OptionsBuilder = new DbContextOptionsBuilder<IdentityDbContext>();
             OptionsBuilder.UseNpgsql(GetDbConnectionString());
         }
 
