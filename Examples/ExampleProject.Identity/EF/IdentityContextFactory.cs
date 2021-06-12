@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using Core.DAL.EF;
+using ExampleProject.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -8,7 +10,6 @@ namespace ExampleProject.Identity.EF
 {
     public class IdentityContextFactory : AbstractContextFactory<IdentityDbContext>
     {
-        private const string AppSettingsFile = "config.json";
         private const string ConnectionStringName = "LocalConnection";
 
         public IdentityContextFactory()
@@ -19,16 +20,17 @@ namespace ExampleProject.Identity.EF
 
         public sealed override string GetDbConnectionString()
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), AppSettingsFile);
+            var directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? string.Empty;
+            var fullPath = Path.Combine(directory, Config.ConfigurationFile);
 
             try
             {
-                if (File.Exists(path))
+                if (File.Exists(fullPath))
                 {
                     var builder = new ConfigurationBuilder();
-                    builder.SetBasePath(Directory.GetCurrentDirectory());
+                    builder.SetBasePath(directory);
 
-                    var config = builder.AddJsonFile(AppSettingsFile).Build();
+                    var config = builder.AddJsonFile(Config.ConfigurationFile).Build();
 
                     string readedConnectionString = config.GetConnectionString(ConnectionStringName);
                     return string.IsNullOrWhiteSpace(readedConnectionString) ? "" : readedConnectionString;
@@ -36,10 +38,10 @@ namespace ExampleProject.Identity.EF
             }
             catch (Exception ex)
             {
-                throw new Exception(@$"Error while reading appsettings.json: {ex.Message}");
+                throw new Exception(@$"Error while reading: {ex.Message}");
             }
 
-            throw new Exception(@$"Error while reading appsettings.json: File {path} not found");
+            throw new Exception(@$"Error while reading: File {Config.ConfigurationFile} not found");
         }
     }
 }

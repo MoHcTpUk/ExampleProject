@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ExampleProject.App\ExampleProject.App.csproj" />
+    <ProjectReference Include="..\ExampleProject.Configuration\ExampleProject.Configuration.csproj" />
   </ItemGroup>
 
 </Project>

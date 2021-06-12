@@ -1,4 +1,5 @@
 ﻿using Core.DAL.Identity;
+using ExampleProject.Configuration;
 using ExampleProject.Identity.EF;
 using ExampleProject.Identity.Entities;
 using ExampleProject.Identity.Models;
@@ -17,11 +18,9 @@ namespace ExampleProject.Identity
 {
     public class IdentityConfigrator : IIdentityConfigurator
     {
-        private string _configFile => "config.json";
-
         public void ConfigureIdentity(IServiceCollection serviceCollection)
         {
-            var configuration = new ConfigurationBuilder().AddJsonFile(_configFile).Build();
+            var configuration = new ConfigurationBuilder().AddJsonFile(Config.ConfigurationFile).Build();
             var jwtOptions = configuration.GetSection(JWTOptions.JWTSettings).Get<JWTOptions>();
 
             serviceCollection.AddIdentity<ApplicationUser, ApplicationRole>()
