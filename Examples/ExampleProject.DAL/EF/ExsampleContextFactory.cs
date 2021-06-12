@@ -8,7 +8,7 @@ namespace ExampleProject.DAL.EF
 {
     public class ExsampleContextFactory : AbstractContextFactory<ApplicationDbContext>
     {
-        private const string AppSettingsFile = "appsettings.json";
+        private const string AppSettingsFile = "config.json";
         private const string ConnectionStringName = "LocalConnection";
 
         public ExsampleContextFactory()

@@ -20,4 +20,6 @@
     <ProjectReference Include="..\ExampleProject.App\ExampleProject.App.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties config_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>
