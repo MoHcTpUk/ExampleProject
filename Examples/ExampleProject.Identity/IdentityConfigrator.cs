@@ -23,6 +23,8 @@ namespace ExampleProject.Identity
             var configuration = new ConfigurationBuilder().AddJsonFile(Config.ConfigurationFile).Build();
             var jwtOptions = configuration.GetSection(JWTOptions.JWTSettings).Get<JWTOptions>();
 
+            serviceCollection.Configure<JWTOptions>(configuration.GetSection(JWTOptions.JWTSettings));
+
             serviceCollection.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<IdentityDbContext>()
                 .AddDefaultTokenProviders()
