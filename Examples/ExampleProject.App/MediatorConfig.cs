@@ -12,6 +12,7 @@ namespace ExampleProject.App
         static MediatorConfig()
         {
             Initializator.Init();
+            Identity.Initializator.Init();
             Mediator = Configurator.ServiceProvider.GetService<IMediator>();
         }
     }

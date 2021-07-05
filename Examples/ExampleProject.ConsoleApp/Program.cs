@@ -12,9 +12,10 @@ namespace ExampleProject.ConsoleApp
 
         static async Task Main(string[] args)
         {
-            var resultCommand = await Cmd.Send(new ExsampleRequest());
 
-            Console.WriteLine(resultCommand.Field);
+            var resultCommand = await Cmd.Send(new AuthenticateRequest());
+
+            Console.WriteLine(resultCommand);
         }
     }
 }

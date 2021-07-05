@@ -8,6 +8,7 @@ namespace ExampleProject.Identity.EF
         public void ConfigureContextFactory(IServiceCollection serviceCollection)
         {
             serviceCollection.AddDbContextFactory<IdentityDbContext, IdentityContextFactory>();
+            serviceCollection.AddDbContext<IdentityDbContext>();
         }
     }
 }

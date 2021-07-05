@@ -1,10 +1,10 @@
-﻿using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Core.BLL.Services;
+﻿using Core.BLL.Services;
 using ExampleProject.BLL.DTO;
 using ExampleProject.DAL.Entities;
 using MediatR;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ExampleProject.App.Commands
 {
