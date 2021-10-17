@@ -8,10 +8,7 @@ using System.Threading.Tasks;
 
 namespace ExampleProject.App.Commands
 {
-    public class ExsampleRequest : IRequest<ExampleEntityDto>
-    {
-
-    }
+    public record ExsampleRequest : IRequest<ExampleEntityDto>;
 
     public class ExsampleRequestHandler : IRequestHandler<ExsampleRequest, ExampleEntityDto>
     {
@@ -24,12 +21,7 @@ namespace ExampleProject.App.Commands
 
         public async Task<ExampleEntityDto> Handle(ExsampleRequest request, CancellationToken cancellationToken)
         {
-            return await Task.Run(() =>
-            {
-                var dto = _exsampleService.Select(_ => _.Id == 1).FirstOrDefault();
-
-                return dto;
-            }, cancellationToken);
+            return (await _exsampleService.SelectAsync(_ => _.Id == 1)).FirstOrDefault();
         }
     }
 }

@@ -3,6 +3,7 @@ using ExampleProject.Identity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
+using MediatR;
 
 namespace ExampleProject.WebAPI.Controllers
 {
@@ -18,11 +19,11 @@ namespace ExampleProject.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<BaseResponse<AuthenticationResponse>> Get(AuthenticateRequest request)
+        public async void Get(RegisterRequest request)
         {
-            var entity = await Cmd.Send(new AuthenticateRequest{Email = request.Email, Password = request.Password});
+            var entity = await Cmd.Send(request);
 
-            return entity;
+            //return entity;
         }
     }
 }

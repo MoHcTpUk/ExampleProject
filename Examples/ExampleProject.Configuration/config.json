@@ -8,12 +8,12 @@
   },
   "AllowedHosts": "*",
   "ConnectionStrings": {
-    "LocalConnection": "Host=;Port=;Database=;Username=;Password="
+    "LocalConnection": "Host=127.0.0.1;Port=5432;Database=exampleapp;Username=exampleapp;Password=THmpPLcvGviVe3q4UqJn"
   },
   "JWTSettings": {
-    "Key": "",
-    "Issuer": "",
-    "Audience": "",
+    "Key": "sinan_tok_graphql_webapi_identiy13",
+    "Issuer": "CoreIdentity",
+    "Audience": "CoreIdentityUser",
     "DurationInMinutes": 130
   }
 }

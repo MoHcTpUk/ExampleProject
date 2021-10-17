@@ -16,7 +16,7 @@ namespace ExampleProject.Identity.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.7")
+                .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             modelBuilder.Entity("ExampleProject.Identity.Entities.ApplicationRole", b =>
@@ -197,19 +197,19 @@ namespace ExampleProject.Identity.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("RoleId1")
+                    b.Property<int?>("ApplicationRoleId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("UserId1")
+                    b.Property<int?>("ApplicationUserId")
                         .HasColumnType("integer");
 
                     b.HasKey("UserId", "RoleId");
 
+                    b.HasIndex("ApplicationRoleId");
+
+                    b.HasIndex("ApplicationUserId");
+
                     b.HasIndex("RoleId");
-
-                    b.HasIndex("RoleId1");
-
-                    b.HasIndex("UserId1");
 
                     b.ToTable("AspNetUserRoles");
                 });
@@ -262,15 +262,17 @@ namespace ExampleProject.Identity.Migrations
 
             modelBuilder.Entity("ExampleProject.Identity.Entities.ApplicationUserRole", b =>
                 {
+                    b.HasOne("ExampleProject.Identity.Entities.ApplicationRole", "ApplicationRole")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("ApplicationRoleId");
+
+                    b.HasOne("ExampleProject.Identity.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("ApplicationUserId");
+
                     b.HasOne("ExampleProject.Identity.Entities.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ExampleProject.Identity.Entities.ApplicationRole", "Role")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("RoleId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -280,15 +282,9 @@ namespace ExampleProject.Identity.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ExampleProject.Identity.Entities.ApplicationUser", "User")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("UserId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("ApplicationRole");
 
-                    b.Navigation("Role");
-
-                    b.Navigation("User");
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("ExampleProject.Identity.Entities.ApplicationUserToken", b =>
