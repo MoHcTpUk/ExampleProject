@@ -24,9 +24,9 @@ namespace ExampleProject.App.Commands
 
         public async Task<ExampleEntityDto> Handle(ExsampleRequest request, CancellationToken cancellationToken)
         {
-            return await Task.Run(() =>
+            return await Task.Run(async () =>
             {
-                var dto = _exsampleService.Select(_ => _.Id == 1).FirstOrDefault();
+                var dto = (await _exsampleService.SelectAsync(_ => _.Id == 1)).FirstOrDefault();
 
                 return dto;
             }, cancellationToken);
